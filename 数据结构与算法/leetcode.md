@@ -1,12 +1,8 @@
-- [leetcode](#leetcode)
-  - [1. 两数之和-哈希表](#1-两数之和-哈希表)
-  - [2. 两数相加-双指针](#2-两数相加-双指针)
-  - [3. 无重复字符的最长子串-双指针](#3-无重复字符的最长子串-双指针)
-  - [7. 整数反转](#7-整数反转)
+- [1. 两数之和](#1-两数之和)
+- [2. 两数相加](#2-两数相加)
+- [3. 无重复字符的最长子串](#3-无重复字符的最长子串)
 
-# leetcode
-
-## [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
+# [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)
 
 > 动态规划：一次遍历数组，同时储存遍历过数组的索引
 >
@@ -15,7 +11,6 @@
 > 时间复杂度O(N)：N为字符串的长度
 >
 > 空间复杂度O(N)：最多哈希表dic保存N个字符
-
 
 ```python
 class Solution:
@@ -29,7 +24,7 @@ class Solution:
         return -1
 ```
 
-## [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+# [2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
 
 ```python
 # Definition for singly-linked list.
@@ -55,12 +50,7 @@ class Solution:
         return dum.next
 ```
 
-## [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
-
-同剑指T26
-
-
-## [628. 三个数的最大乘积](https://leetcode-cn.com/problems/maximum-product-of-three-numbers/)
+# [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
 > 先排序，然后分两种情况，正正正(0)或者正负负
 
