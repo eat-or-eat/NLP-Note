@@ -92,7 +92,6 @@ $O(1)<O(logN)<O(N)<O(N^2)<O(2^N)$
 >
 > 思路：顺序遍历字符串，遇到空格就添加%20否则添加原字符
 
-
 ```python
 class Solution:
     def replaceSpace(self, s: str) -> str:
@@ -186,7 +185,7 @@ class Solution:
         while cur: # 最后一个cur为None，pre为实际最后一个节点
             temp = cur.next  # 因为后面要重定向cur，所以需要暂存下一个节点
             cur.next = pre  # 重定向
-        
+      
             # 更新下一组节点
             pre = cur
             cur = temp
@@ -256,12 +255,12 @@ class Solution:
     def copyRandomList(self, head: 'Node') -> 'Node':
         if not head: return None  # 0输入情况判断
         dic = {}  
-    
+  
         cur = head  # 构造暂存{原节点:新节点含节点值}字典
         while cur:
             dic[cur] = Node(cur.val)
             cur = cur.next
-    
+  
         cur = head  # 为新节点定义next和random指向
         while cur:
             dic[cur].next = dic.get(cur.next)
@@ -287,7 +286,7 @@ class Solution:
             res.append(s[i])
         for i in range(n):
             res.append(s[i])
-    
+  
         return ''.join(res)
 ```
 
@@ -308,7 +307,7 @@ class Solution:
         for i, j in zip(range(1 - k,n - k + 1), range(n)):
             # 删除可能滑过的最大最左边的数字，弹出最大值后还有次大值
             if i > 0 and deque[0] == nums[i - 1]: deque.popleft()
-        
+      
             # 保证deque非严格递减
             while deque and deque[-1] < nums[j]:  # 不用等于是因为非严格递减，防止前面删除导致没最大值
                  deque.pop()
@@ -364,7 +363,7 @@ class MaxQueue:
         if value == self.deque[0]:  # 如果弹出的值跟双端队列最大值相等就业一起弹出，不然不弹出，这样就能保存最大值了
             self.deque.popleft()
         return value
-    
+  
 
 
 # Your MaxQueue object will be instantiated and called as such:
@@ -379,7 +378,6 @@ class MaxQueue:
 > 时间O(N):N个字符需要遍历
 >
 > 空间O(N):最多N个字符要保存在str变量上
-
 
 ```python
 class Solution:
@@ -415,7 +413,6 @@ class Solution:
 转移方程： 确定原问题的解与子问题的解之间的关系是什么，以及使用何种选择规则从子问题最优解组合中选出原问题最优解；
 返回值： 确定应返回的问题的解是什么，即动态规划在何处停止迭代；
 
-
 ## 1.[剑指 Offer 10- I. 斐波那契数列](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)
 
 > 时间O(N):第N个数字需要遍历N次
@@ -432,7 +429,6 @@ class Solution:
             b = temp % 1000000007
         return a
 ```
-
 
 ## 2.[剑指 Offer 10- II. 青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)
 
@@ -451,13 +447,11 @@ class Solution:
         return a
 ```
 
-
 ## 3.[剑指 Offer 19. 正则表达式匹配](https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/)
 
 > 时间O(MN):MN为dp矩阵遍历的次数，M行N列
 >
 > 空间O(MN):MN为矩阵的大小，M行N列
-
 
 ```python
 class Solution:
@@ -481,10 +475,9 @@ class Solution:
                 else:
                     if dp[i - 1][j - 1] and p[j - 1] == s[i - 1]:dp[i][j] = True  # 之前匹配的情况下，新的p等于新的s
                     if dp[i - 1][j - 1] and p[j - 1] == '.':dp[i][j] = True  # 之前匹配的情况下，新的p等于'.'
-      
+    
         return dp[-1][-1]
 ```
-
 
 ## 4.[剑指 Offer 42. 连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
 
@@ -499,7 +492,6 @@ class Solution:
             nums[i] += max(nums[i - 1], 0)
         return max(nums)
 ```
-
 
 ## 5.[剑指 Offer 46. 把数字翻译成字符串](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
 
@@ -529,19 +521,17 @@ class Solution:
 class Solution:
     def maxValue(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])  # M行N列
-      
+    
         for i in range(1, m):
             grid[i][0] += grid[i - 1][0]
         for j in range(1, n):
             grid[0][j] += grid[0][j - 1]
-      
+    
         for i in range(1, m):
             for j in range(1, n):
                 grid[i][j] += max(grid[i - 1][j], grid[i][j - 1])
         return grid[-1][-1]
 ```
-
-
 
 ## 7.[剑指 Offer 48. 最长不含重复字符的子字符串](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
 
@@ -563,7 +553,6 @@ class Solution:
         return res
 ```
 
-
 ## 8.[264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/)
 
 > 时间O(N):遍历N次循环
@@ -584,9 +573,7 @@ class Solution:
         return dp[-1]
 ```
 
-
 ## 9.[剑指 Offer 60. n个骰子的点数](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
-
 
 ## 10.[剑指 Offer 63. 股票的最大利润](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
 
@@ -607,11 +594,249 @@ class Solution:
 
 # 四，搜索与回溯算法
 
+
+## 1.[剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)
+
+> 时间O(MN$3^K$):遍历MN个元素，每个元素最多有$3^K$种可能
+>
+> 空间O(MN):最多递归深度为每个元素都找到，共MN个
+
+```python
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(i, j, k):
+            if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]: return False  # 超出矩阵或者字母不符合
+            if k == len(word) - 1: return True  # 如果到了最后一个字母返回True表示找到了
+            board[i][j] = ''  # 替换掉当前的值
+            res = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)  # 向四个方向递归
+            board[i][j] = word[k]  # 还原当前值
+            return res  # 返回当前递归状态下的某个字母是否匹配
+
+        for i in range(len(board)):  # 行遍历，这样如果是空矩阵直接返回[]
+            for j in range(len(board[0])):  # 列遍历
+                if dfs(i, j, 0): return True
+
+        return False
+```
+
+
+## 2.[剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
+
+> 时间O(N)
+
+```python
+class Solution:
+    def movingCount(self, m: int, n: int, k: int) -> int:
+        def dfs(i, j , si, sj):
+            if i >= m or j >= n or k < si + sj or (i, j) in visited: return 0  # 当i，j越界或两个位数加起来超过k或(i,j)曾经到过
+            visited.add((i,j))  # 记录到过的位置
+            return 1 + dfs(i + 1,j, si + 1 if (i + 1) % 10 else si - 8, sj) + \  #
+                       dfs(i, j + 1, si, sj + 1 if (j + 1) % 10 else sj - 8)
+      
+        visited = set()
+
+        return dfs(0, 0, 0, 0)
+
+```
+
+
+## 3.[剑指 Offer 26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
+
+> 时间O(MN):M为A树的节点数量，N为B树的节点数量
+>
+> 空间O(M):M为A树的节点数量，最多递归M层
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSubStructure(self, A: TreeNode, B: TreeNode) -> bool:
+        def recur(A,B):
+            if not B: return True  # B树背遍历完全
+            if not A or A.val != B.val: return False  # 没有A树了，AB值不匹配
+            return recur(A.left, B.left) and recur(A.right, B.right)  # 递归左数，右树
+
+        return bool(A and B) and (recur(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B))  # AB树都需要存在同时有任何一队节点符合子树要求
+```
+
+
+
+## 4.[剑指 Offer 27. 二叉树的镜像](https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/)
+
+> 时间O(N):N为二叉树的节点数量
+>
+> 空间O(N):最多递归节点数量大小的栈空间
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def mirrorTree(self, root: TreeNode) -> TreeNode:
+        if not root: return  # 设定终止情况
+        temp = root.left  # 递归后左子树会变，需要暂存
+        root.left = self.mirrorTree(root.right)
+        root.right = self.mirrorTree(temp)
+        return root
+```
+
+
+## 5.[剑指 Offer 28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
+
+> 时间O(N):最多一对节点计算一次，一共N/2次
+>
+> 空间O(N):最多递归N/2次的深度
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        def recur(L, R):
+            if not L and not R: return True
+            if not L or not R or L.val != R.val: return False
+            return recur(L.left, R.right) and recur(L.right, R.left)
+
+        return recur(root.left, root.right) if root else True
+```
+
+
+## 6.[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
+
+> 时间O(N):N为节点数量
+>
+> 空间O(N):最差有N/2个树节点同时在deque
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[int]:
+        if not root: return []
+        deque, res = collections.deque(), []
+        deque.append(root)
+        while deque:
+            node = deque.popleft()
+            res.append(node.val)
+            if node.left:deque.append(node.left)
+            if node.right:deque.append(node.right)
+        return res
+```
+
+
+
+## 7.[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)
+
+> 时间O(N):N为节点数量
+>
+> 空间O(N):最多N/2个deque暂存空间
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        deque, res  = collections.deque(), []
+        deque.append(root)
+
+        while deque:
+            temp = []
+            for _ in range(len(deque)):
+                node = deque.popleft()
+                temp.append(node.val)
+                if node.left: deque.append(node.left)
+                if node.right: deque.append(node.right)
+            res.append(temp)
+
+        return res
+```
+
+
+
+## 8.[剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
+
+> 时间O(N):N为节点数量
+>
+> 空间O(N):最多N/2个deque暂存空间
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        deque, res = collections.deque(), []
+      
+        deque.append(root)
+        while deque:
+            temp = collections.deque()
+            for _ in range(len(deque)):
+                node = deque.popleft()
+                if len(res) % 2: temp.appendleft(node.val)
+                else:temp.append(node.val)
+                if node.left: deque.append(node.left)
+                if node.right:deque.append(node.right)
+            res.append(list(temp))
+        return res
+```
+
+
+
+
+
 # 五，分治算法
 
 # 六，排序
 
 # 七.查找算法
+
+
+## 4.[剑指 Offer 50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
+
+> 时间O(N):遍历N个字符
+>
+> 空间O(1):最多只有26个小写字母
+
+```python
+class Solution:
+    def firstUniqChar(self, s: str) -> str:
+        dic = {}
+        for c in s:
+            dic[c] = not c in dic
+        for k, v in dic.items():
+            if v: return k
+        return ' '
+```
 
 # 八，双指针
 
