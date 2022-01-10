@@ -812,7 +812,175 @@ class Solution:
 
 
 
+## 9.[剑指 Offer 34. 二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
 
+> 时间O(N):每个节点遍历一次
+>
+> 空间O(N):最多每个节点都储存path中
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
+        res, path = [], []
+        def recur(node, tar):
+            if not node: return 
+            tar -= node.val
+            path.append(node.val)
+            if not node.right and not node.left and tar == 0:  # 路径满足条件
+                res.append(list(path))  # 要加list，深拷贝，不然path列表会随着后面的变化而变化
+            recur(node.left, tar)  # 左子树搜索
+            recur(node.right, tar)  # 右子树所搜
+            path.pop()  # 路径退回
+
+        recur(root, target)
+        return res
+```
+
+
+## 10.[剑指 Offer 36. 二叉搜索树与双向链表](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
+
+
+## 11.[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
+
+
+## 12.[剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+
+> 时间O(N!N):N!为可能性，每次join占用N的时间
+>
+> 空间O($N^2$):递归深度为N，dic集合中最多存有N个字母
+
+
+```python
+class Solution:
+    def permutation(self, s: str) -> List[str]:
+        c, res = list(s), []
+        def dfs(x):
+            if x == len(c) - 1: 
+                res.append(''.join(c))  # 到底了就添加新情况
+                return 
+            dic = set()  # 暂存已经固定的字母
+            for i in range(x, len(c)):
+                if c[i] in dic: continue  # 如果固定过就跳过
+                dic.add(c[i])
+                c[i], c[x] = c[x], c[i]
+                dfs(x + 1)
+                c[i], c[x] = c[x], c[i]
+        dfs(0)
+        return res
+```
+
+
+## 13.[剑指 Offer 54. 二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+
+> 时间O(N)
+>
+> 空间O(N)
+
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        def dfs(node):
+            if not node: return
+            dfs(node.right)
+            if self.k == 0: return
+            self.k -= 1
+            if self.k == 0: self.res = node.val
+            dfs(node.left)
+
+        self.k = k
+        dfs(root)
+        return self.res
+```
+
+
+## 14.[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
+
+> 时间O(N)
+>
+> 空间O(N)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:return 0
+        queue, res = [root], 0
+  
+        while queue:
+            temp = []
+            for node in queue:
+                if node.left: temp.append(node.left)
+                if node.right: temp.append(node.right)
+            queue = temp
+            res += 1
+  
+        return res
+```
+
+
+
+
+## 15.[剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
+
+> 迷
+
+```python
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def recur(root):
+            if not root: return 0
+            left = recur(root.left)
+            if left == -1: return -1
+            right = recur(root.right)
+            if right == -1: return -1
+            return max(left, right) + 1 if abs(left - right) <= 1 else -1
+
+        return recur(root) != -1
+```
+
+
+## 16.[剑指 Offer 64. 求1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)
+
+> 时间O(N):N次递归
+>
+> 空间O(N):N的递归深度
+
+
+```python
+class Solution:
+    def __init__(self):
+        self.res = 0
+    def sumNums(self, n: int) -> int:
+        n > 1 and self.sumNums(n - 1)
+        self.res += n
+        return self.res
+```
+
+
+## 17.[剑指 Offer 68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+
+## 18.[剑指 Offer 68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 # 五，分治算法
 
