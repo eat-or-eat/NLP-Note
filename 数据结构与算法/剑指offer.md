@@ -185,7 +185,7 @@ class Solution:
         while cur: # 最后一个cur为None，pre为实际最后一个节点
             temp = cur.next  # 因为后面要重定向cur，所以需要暂存下一个节点
             cur.next = pre  # 重定向
-      
+    
             # 更新下一组节点
             pre = cur
             cur = temp
@@ -307,7 +307,7 @@ class Solution:
         for i, j in zip(range(1 - k,n - k + 1), range(n)):
             # 删除可能滑过的最大最左边的数字，弹出最大值后还有次大值
             if i > 0 and deque[0] == nums[i - 1]: deque.popleft()
-      
+    
             # 保证deque非严格递减
             while deque and deque[-1] < nums[j]:  # 不用等于是因为非严格递减，防止前面删除导致没最大值
                  deque.pop()
@@ -475,7 +475,7 @@ class Solution:
                 else:
                     if dp[i - 1][j - 1] and p[j - 1] == s[i - 1]:dp[i][j] = True  # 之前匹配的情况下，新的p等于新的s
                     if dp[i - 1][j - 1] and p[j - 1] == '.':dp[i][j] = True  # 之前匹配的情况下，新的p等于'.'
-    
+  
         return dp[-1][-1]
 ```
 
@@ -521,12 +521,12 @@ class Solution:
 class Solution:
     def maxValue(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])  # M行N列
-    
+  
         for i in range(1, m):
             grid[i][0] += grid[i - 1][0]
         for j in range(1, n):
             grid[0][j] += grid[0][j - 1]
-    
+  
         for i in range(1, m):
             for j in range(1, n):
                 grid[i][j] += max(grid[i - 1][j], grid[i][j - 1])
@@ -594,7 +594,6 @@ class Solution:
 
 # 四，搜索与回溯算法
 
-
 ## 1.[剑指 Offer 12. 矩阵中的路径](https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/)
 
 > 时间O(MN$3^K$):遍历MN个元素，每个元素最多有$3^K$种可能
@@ -619,7 +618,6 @@ class Solution:
         return False
 ```
 
-
 ## 2.[剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
 
 > 时间O(N)
@@ -632,13 +630,12 @@ class Solution:
             visited.add((i,j))  # 记录到过的位置
             return 1 + dfs(i + 1,j, si + 1 if (i + 1) % 10 else si - 8, sj) + \  #
                        dfs(i, j + 1, si, sj + 1 if (j + 1) % 10 else sj - 8)
-      
+    
         visited = set()
 
         return dfs(0, 0, 0, 0)
 
 ```
-
 
 ## 3.[剑指 Offer 26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
 
@@ -664,8 +661,6 @@ class Solution:
         return bool(A and B) and (recur(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B))  # AB树都需要存在同时有任何一队节点符合子树要求
 ```
 
-
-
 ## 4.[剑指 Offer 27. 二叉树的镜像](https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/)
 
 > 时间O(N):N为二叉树的节点数量
@@ -688,7 +683,6 @@ class Solution:
         root.right = self.mirrorTree(temp)
         return root
 ```
-
 
 ## 5.[剑指 Offer 28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
 
@@ -713,7 +707,6 @@ class Solution:
 
         return recur(root.left, root.right) if root else True
 ```
-
 
 ## 6.[剑指 Offer 32 - I. 从上到下打印二叉树](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)
 
@@ -741,8 +734,6 @@ class Solution:
             if node.right:deque.append(node.right)
         return res
 ```
-
-
 
 ## 7.[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)
 
@@ -776,8 +767,6 @@ class Solution:
         return res
 ```
 
-
-
 ## 8.[剑指 Offer 32 - III. 从上到下打印二叉树 III](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/)
 
 > 时间O(N):N为节点数量
@@ -796,7 +785,7 @@ class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
         deque, res = collections.deque(), []
-      
+    
         deque.append(root)
         while deque:
             temp = collections.deque()
@@ -809,8 +798,6 @@ class Solution:
             res.append(list(temp))
         return res
 ```
-
-
 
 ## 9.[剑指 Offer 34. 二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
 
@@ -842,19 +829,15 @@ class Solution:
         return res
 ```
 
-
 ## 10.[剑指 Offer 36. 二叉搜索树与双向链表](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
 
-
 ## 11.[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
-
 
 ## 12.[剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
 
 > 时间O(N!N):N!为可能性，每次join占用N的时间
 >
 > 空间O($N^2$):递归深度为N，dic集合中最多存有N个字母
-
 
 ```python
 class Solution:
@@ -875,13 +858,11 @@ class Solution:
         return res
 ```
 
-
 ## 13.[剑指 Offer 54. 二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
 
 > 时间O(N)
 >
 > 空间O(N)
-
 
 ```python
 # Definition for a binary tree node.
@@ -905,7 +886,6 @@ class Solution:
         dfs(root)
         return self.res
 ```
-
 
 ## 14.[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
 
@@ -937,9 +917,6 @@ class Solution:
         return res
 ```
 
-
-
-
 ## 15.[剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
 
 > 迷
@@ -958,13 +935,11 @@ class Solution:
         return recur(root) != -1
 ```
 
-
 ## 16.[剑指 Offer 64. 求1+2+…+n](https://leetcode-cn.com/problems/qiu-12n-lcof/)
 
 > 时间O(N):N次递归
 >
 > 空间O(N):N的递归深度
-
 
 ```python
 class Solution:
@@ -976,18 +951,99 @@ class Solution:
         return self.res
 ```
 
-
 ## 17.[剑指 Offer 68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
-
 
 ## 18.[剑指 Offer 68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 # 五，分治算法
 
+
+## 1.[剑指 Offer 07. 重建二叉树](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)
+
+> 时间O(N):N为节点数量
+>
+> 空间O(N):中序遍历字典占N个空间，最多树的递归深度为N
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        def recur(root, left, right):
+            if left > right: return 
+            node = TreeNode(preorder[root])  # 建立根节点
+            i = dic[preorder[root]]  # 获取根节点在中序遍历中的位置
+            node.left = recur(root + 1, left, i - 1)  # 建立左子树
+            node.right = recur(i - left + root + 1, i + 1, right)  # 建立右子树
+            return node
+
+        dic = {}
+        for i in range(len(inorder)):  # 为中序遍历构造字典将查找节点的时间复杂度O(N)->O(1)
+            dic[inorder[i]] = i
+  
+        return recur(0, 0, len(inorder) - 1)
+
+
+```
+
+
+
+## 2.[剑指 Offer 16. 数值的整数次方](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
+
+> 迷
+
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if x == 0: return 0
+        res = 1
+        if n < 0: x, n = 1 / x, -n
+        while n:
+            if n & 1: res *= x
+            x *= x
+            n >>= 1
+        return res 
+
+```
+
+
+
+## 3.[剑指 Offer 17. 打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+
+> 时间O($10^n$):建立列表用$10^n$
+>
+> 空间O(1):建立列表需使用o(1)大小的额外空间(列表作为返回结果，不计入额外空间)
+
+```python
+class Solution:
+    def printNumbers(self, n: int) -> List[int]:
+        res = []
+        for i in range(1,10 ** n):
+            res.append(i)
+        return res
+```
+
+
+## 4.[剑指 Offer 33. 二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+
+
+## 5.[剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)
+
+
+
+
+
 # 六，排序
 
-# 七.查找算法
 
+
+
+# 七.查找算法
 
 ## 4.[剑指 Offer 50. 第一个只出现一次的字符](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/)
 
